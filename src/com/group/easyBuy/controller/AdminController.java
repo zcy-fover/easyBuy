@@ -35,7 +35,7 @@ public class AdminController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		doPost(request, response);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+//		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**
@@ -57,7 +57,9 @@ public class AdminController extends HttpServlet {
 		ServiceModel model = service.login(a);
 		// 将业务模型对象转换为json字符串
 		
-		request.getRequestDispatcher("/view/main.html").forward(request, response);
+//		response.sendRedirect("/easyBuy/view/index.html");
+		request.getRequestDispatcher("/view/index.html").forward(request, response);
+//		request.getRequestDispatcher("/view/tree.html").forward(request, response);
 		
 		Gson g = new Gson();
 		String json = g.toJson(model);
