@@ -16,7 +16,7 @@ public class DAOHelper {
 	 * 
 	 * @return
 	 */
-	public static boolean exeUpdate(String sql, String... args) {
+	public static boolean exeUpdate(String sql, Object... args) {
 		Connection conn = DBUtils.getConn();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
