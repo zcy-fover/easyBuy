@@ -51,10 +51,29 @@ public class AdminDAO implements IBaseDAO<Admin> {
 		return list != null ? (Admin) list.get(0) : null;
 	}
 
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<Admin> findAll() {
 
-//		String sql = "select username, password from tbadmin";
-		return null;
+		String sql = "select adminid, username, password from tbadmin";
+		List listAdmin = DAOHelper.exeQueryAll(sql, new CallBack() {
+			public List getResult(ResultSet rs) {
+				List li = null;
+				li = new ArrayList();
+				try {
+					while (rs.next()) {
+						Admin a = new Admin();
+						a.setAdminId(rs.getInt("adminid"));
+						a.setUsername(rs.getString("username"));
+						a.setPassword(rs.getString("password"));
+						li.add(a);
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				return li;
+			}
+		});
+		return listAdmin != null ? listAdmin : null;
 	}
 
 }

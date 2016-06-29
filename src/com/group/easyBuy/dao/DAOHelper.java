@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.group.easyBuy.utils.DBUtils;
@@ -39,7 +40,7 @@ public class DAOHelper {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static List exeQuery(String sql, String[] args, CallBack call) {
+	public static List exeQuery(String sql, Object[] args, CallBack call) {
 		Connection conn = DBUtils.getConn();
 		try {
 			PreparedStatement ps = conn.prepareStatement(sql);
@@ -56,16 +57,19 @@ public class DAOHelper {
 		return null;
 	}
 
-//	public static List exeQueryAll(String sql) {
-//		Connection conn = DBUtils.getConn();
-//		try {
-//			PreparedStatement ps = conn.prepareStatement(sql);
-//			ResultSet rs = ps.executeQuery();
-//			List<Admin> = rs.
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return null;
-//	}
+	@SuppressWarnings("rawtypes")
+	public static List exeQueryAll(String sql, CallBack call) {
+		Connection conn = DBUtils.getConn();
+		try {
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			List  list = new ArrayList<>();
+			list = call.getResult(rs);
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 }
