@@ -59,6 +59,8 @@ public class UserController extends HttpServlet {
 		UserService userService = new UserService();
 		ServiceModel model = userService.login(user);
 
+		System.out.println(model.getMessage() + "---" + model.getCode() + "---" + model.getData());
+		
 		Gson g = new Gson();
 		String json = g.toJson(model);
 		PrintWriter out = response.getWriter();

@@ -3,6 +3,45 @@
 <head>
 <meta charset="UTF-8" />
 <title>Login Page</title>
+
+<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css" />
+<script type="text/javascript" src="assets/js/jquery-1.6.4.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui-1.8.16.custom.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+	function formSubmit(){
+			$('#addUserForm').validate({
+	         /*    errorElement: 'div',
+	            errorClass: 'help-block',
+	            focusInvalid: false, */
+	            rules: {
+	                username: {
+	                    required: true,
+	                    minlength:2,
+	                    maxlength:20
+	                },
+	                password: {
+	                    required: true,
+	                    minlength:5
+	                },
+	            },
+	            messages:{
+	                username: {
+	                    required: "请输入用户名",
+	                    minlength:jQuery.validator.format("标题最少为{0}个字"),
+	                    maxlength:jQuery.validator.format("标题最多为{0}个字")
+	                },
+	                password: {
+	                    required: "请输入密码",
+	                    minlength:jQuery.validator.format("内容最少为{0}个字"),
+	                },
+	            }
+	    });
+
+	}
+</script>
 </head>
 <style type="text/css">
 body {
@@ -144,6 +183,7 @@ body {
 	vertical-align: middle;
 	display: inline-block;
 	line-height: 35px;
+	margin-bottom: 20px;
 }
 
 #user-password {
@@ -195,7 +235,7 @@ body {
 }
 
 .item {
-	margin-left: 20px;
+	margin-left: 65px;
 	font-family: 微软雅黑;
 	font-size: 20px;
 	font-weight: bold;
@@ -218,7 +258,7 @@ body {
 }
 
 .form-input {
-	height: 20px;
+	height: 40px;
 }
 
 .btn {
@@ -253,7 +293,7 @@ body {
 		<div id="header">
 			<div id="logo"></div>
 			<div id="heading">
-				<div id="title">易购网后台管理系统</div>
+				<div id="title">易购商城后台管理系统</div>
 				<!-- <div id="subTitle">Ver 1.0</div> -->
 			</div>
 		</div>
@@ -267,17 +307,17 @@ body {
 						<div id="welcome">
 							<span id="welcome-text">管&nbsp;理&nbsp;员&nbsp;登&nbsp;录</span>
 						</div>
-						<form action="AdminController" method="post">
+						<form action="AdminController" method="post" id="addUserForm">
 							<div id="user-name">
 								<span class="item">用户名:</span>
 								<span class="input">
-									<input type="text" name="username" class="form-input">
+									<input type="text" name="username" class="form-input form-control" placeholder="请输入用户名">
 								</span>
 							</div>
 							<div id="user-password">
 								<span class="item">密&nbsp;&nbsp;&nbsp;码:</span>
 								<span class="input">
-									<input type="password" name="password" class="form-input">
+									<input type="password" name="password" class="form-input form-control" placeholder="请输入密码">
 								</span>
 							</div>
 							<!-- <div id="user-checkcode">
@@ -289,8 +329,8 @@ body {
 								<span id="tip-text"></span>
 							</div>
 							<div id="button-group">
-								<input type="submit" class="btn" value="提交" /> <input
-									type="reset" class="btn" value="重置" />
+								<input type="submit" class="btn" value="提交" onclick="javascript:formSubmit();"/> 
+								<input type="reset" class="btn" value="重置" />
 							</div>
 						</form>
 					</div>

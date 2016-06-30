@@ -6,7 +6,8 @@ import com.group.easyBuy.dto.User;
 
 public class UserService {
 
-private IBaseDAO<User> userDAO = new UserDAO();
+	private IBaseDAO<User> userDAO = new UserDAO();
+	private ServiceModel model = null;
 	
 	/**
 	 * 完成用户登录功能
@@ -14,16 +15,26 @@ private IBaseDAO<User> userDAO = new UserDAO();
 	 * @return
 	 */
 	public ServiceModel login(User user){
-		ServiceModel model = null;
 		User userTemp = userDAO.findSingle(user);
 		if(userTemp != null){
-			if(userTemp.getPassword().equals(userTemp.getPassword())){
+			if(userTemp.getPassword().equals(user.getPassword())){
 				model = new ServiceModel("登录成功", 1, true);
 			} else{
 				model = new ServiceModel("密码错误", 0, false);
 			}
 		}else{
 			model = new ServiceModel("用户不存在", -1, false);
+		}
+		return model;
+	}
+	
+	public ServiceModel addUser(User user){
+		boolean isAccess = userDAO.save(user);
+		if(isAccess){
+			model = new ServiceModel("注册成功", 1, true);
+			
+		}else{
+			model = new ServiceModel("注册失败", 0, false);
 		}
 		return model;
 	}

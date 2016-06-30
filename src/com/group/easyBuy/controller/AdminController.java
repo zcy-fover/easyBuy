@@ -55,12 +55,12 @@ public class AdminController extends HttpServlet {
 		a.setPassword(password);
 		AdminService service = new AdminService();
 		ServiceModel model = service.login(a);
-		// 将业务模型对象转换为json字符串
+		System.out.println(model.getMessage() + "---" + model.getCode() + "---" + model.getData());
 		
 //		response.sendRedirect("/easyBuy/view/index.html");
 		request.getRequestDispatcher("/view/menu.html").forward(request, response);
 //		request.getRequestDispatcher("/view/tree.html").forward(request, response);
-		
+		// 将业务模型对象转换为json字符串
 		Gson g = new Gson();
 		String json = g.toJson(model);
 		PrintWriter out = response.getWriter();
