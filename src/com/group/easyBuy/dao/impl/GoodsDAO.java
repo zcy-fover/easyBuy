@@ -13,8 +13,8 @@ import com.group.easyBuy.dto.Goods;
 public class GoodsDAO implements IBaseDAO<Goods>{
 
 	public boolean save(Goods t) {
-		return DAOHelper.exeUpdate("insert into tbgoods(cid,gname,price,offset,storage) values(?,?,?,?,?)",
-				t.getCategory().getCid(),t.getGname(),t.getPrice(),t.getOffset(),t.getStorage());
+		return DAOHelper.exeUpdate("insert into tbgoods(cid,gname,price,offset,storage,gtime) values(?,?,?,?,?,?)",
+				t.getCategory().getCid(),t.getGname(),t.getPrice(),t.getOffset(),t.getStorage(),t.getTime());
 	}
 
 	public boolean update(Goods t) {

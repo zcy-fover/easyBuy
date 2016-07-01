@@ -1,7 +1,6 @@
 package com.group.easyBuy.controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
 import com.group.easyBuy.dto.Admin;
 import com.group.easyBuy.service.AdminService;
 import com.group.easyBuy.service.ServiceModel;
@@ -57,15 +55,21 @@ public class AdminController extends HttpServlet {
 		ServiceModel model = service.login(a);
 		System.out.println(model.getMessage() + "---" + model.getCode() + "---" + model.getData());
 		
-//		response.sendRedirect("/easyBuy/view/index.html");
-		request.getRequestDispatcher("/view/menu.html").forward(request, response);
-//		request.getRequestDispatcher("/view/tree.html").forward(request, response);
+		if(model.getCode() == 1){
+			request.setAttribute("admin", username);
+			request.getRequestDispatcher("/view/menu.jsp").forward(request, response);
+		} else{
+			request.getSession().invalidate();
+			request.setAttribute("message", model.getMessage());
+			request.getRequestDispatcher("/").forward(request, response);
+		}
+		
 		// 将业务模型对象转换为json字符串
-		Gson g = new Gson();
-		String json = g.toJson(model);
-		PrintWriter out = response.getWriter();
-		out.print(json);
-		out.flush();
+//		Gson g = new Gson();
+//		String json = g.toJson(model);
+//		PrintWriter out = response.getWriter();
+//		out.print(json);
+//		out.flush();
 	}
 
 }

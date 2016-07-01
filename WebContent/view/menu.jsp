@@ -1,3 +1,9 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="com.group.easyBuy.dto.*" %>
+<%
+	String admin = (String)request.getAttribute("admin");
+%>
+
 <!DOCTYPE>
 <html>
 <head>
@@ -15,8 +21,8 @@
 		<div class="navigation">
 			<ul>
 				<li>欢迎您！</li>
-				<li><a href="admin.jsp">Admin</a></li>
-				<li><a href="">修改密码</a></li>
+				<li><a href="#" id="admin"><%= admin %></a></li>
+				<li><a href="#" id="editPass">修改密码</a></li>
 				<!-- <li><a href="">设置</a></li> -->
 				<li><a href="/easyBuy/LoginoutController">退出</a></li>
 			</ul>
@@ -54,9 +60,9 @@
 						<span></span>订单管理
 					</h4>
 					<div class="list-item none">
-						<a href=''>查看订单</a>
-						<a href=''>订单审核</a> 
-						<a href=''>订单删除</a> 
+						<a href="#" id="viewOrders">查看订单</a>
+						<a href="#" id="checkOrders">订单审核</a> 
+						<a href="#" id="deleteOrders">订单删除</a> 
 					</div>
 				</li>
 				<li>
@@ -64,8 +70,17 @@
 						<span></span>评论管理
 					</h4>
 					<div class="list-item none">
-						<a href=''>查看评论</a> 
-						<a href=''>删除评论</a> 
+						<a href="#" id="viewCommon">查看评论</a> 
+						<a href="#" id="deleteCommon">删除评论</a> 
+					</div>
+				</li>
+				<li>
+					<h4 class="M6">
+						<span></span>商品分类
+					</h4>
+					<div class="list-item none">
+						<a href="#" id="viewCategory">所有分类</a> 
+						<a href="#" id="addCategory">添加分类</a> 
 					</div>
 				</li>
 				<li>
@@ -119,6 +134,16 @@
 			$("#viewGoods").click(function(){
 				$("#main").addClass("hidden");
 				$("#main").addClass("hover").html("<iframe src='/easyBuy/ViewGoodsController' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
+			});
+			
+			$("#admin").click(function(){
+				$("#main").addClass("hidden");
+				$("#main").addClass("hover").html("<iframe src='view/admin.jsp' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
+			});
+			
+			$("#editPass").click(function(){
+				$("#main").addClass("hidden");
+				$("#main").addClass("hover").html("<iframe src='view/editPass.jsp' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
 			});
 		})
 	</script>

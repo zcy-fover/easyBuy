@@ -1,5 +1,8 @@
 package com.group.easyBuy.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Test;
 
 import com.group.easyBuy.dto.User;
@@ -23,4 +26,13 @@ public class TestUserService {
 		userService.addUser(user);
 	}
 
+	@Test
+	public void testViewUser(){
+		List<User> listUser = new ArrayList<>();
+		listUser = userService.viewUser();
+		for(User user: listUser){
+			System.out.println(user.getUsername());
+		}
+	}
+	
 }

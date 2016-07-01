@@ -1,5 +1,7 @@
 package com.group.easyBuy.service;
 
+import java.util.List;
+
 import com.group.easyBuy.dao.IBaseDAO;
 import com.group.easyBuy.dao.impl.UserDAO;
 import com.group.easyBuy.dto.User;
@@ -28,6 +30,11 @@ public class UserService {
 		return model;
 	}
 	
+	/**
+	 * 用于添加用户服务方法
+	 * @param user
+	 * @return
+	 */
 	public ServiceModel addUser(User user){
 		boolean isAccess = userDAO.save(user);
 		if(isAccess){
@@ -37,6 +44,15 @@ public class UserService {
 			model = new ServiceModel("注册失败", 0, false);
 		}
 		return model;
+	}
+	
+	public List<User> viewUser(){
+		List<User> listUser = userDAO.findAll();
+		return listUser;
+	}
+	
+	public boolean deleteUser(User user){
+		return userDAO.del(user);
 	}
 	
 }

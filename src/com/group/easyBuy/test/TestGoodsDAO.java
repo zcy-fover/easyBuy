@@ -59,9 +59,8 @@ public class TestGoodsDAO {
 	public void testFindAll() {
 		List<Goods> listGoods = goodsDAO.findAll();
 		for(Goods goods: listGoods){
-			System.out.println(goods.getGid()+" "+goods.getCategory().getCid() + "  " +goods.getGname() + "  " + goods.getPrice() + " "+goods.getOffset()+" "+ goods.getStorage()+" "+goods.getTime());
+			System.out.println(goods.getGid()+" "+goods.getCategory().getCname() + "  " +goods.getGname() + "  " + goods.getPrice() + " "+goods.getOffset()+" "+ goods.getStorage()+" "+goods.getTime());
 		}
 	}
-
 
 }

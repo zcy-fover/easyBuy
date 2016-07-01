@@ -7,17 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.group.easyBuy.dto.User;
+import com.group.easyBuy.service.UserService;
+
 /**
- * Servlet implementation class LoginoutController
+ * Servlet implementation class DeleteUserController
  */
-@WebServlet(description = "实现注销机制", urlPatterns = { "/LoginoutController" })
-public class LoginoutController extends HttpServlet {
+@WebServlet(description = "删除用户", urlPatterns = { "/DeleteUserController" })
+public class DeleteUserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginoutController() {
+    public DeleteUserController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,7 +29,17 @@ public class LoginoutController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
+		
+		String username = request.getParameter("username");
+		System.out.println("*****************" + username);
+		User user = new User();
+		user.setUsername(username);
+		
+		UserService userService = new UserService();
+		userService.deleteUser(user);
+		
+//		request.getRequestDispatcher("/view/menu.html").forward(request, response);
+		
 //		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
@@ -34,12 +47,7 @@ public class LoginoutController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		request.getSession().invalidate();
-		response.getWriter().println("已经注销，请重新登录");
-		System.out.println("已经注销，请重新登录");
-		response.sendRedirect("login.jsp");
-		
+		doGet(request, response);
 	}
 
 }

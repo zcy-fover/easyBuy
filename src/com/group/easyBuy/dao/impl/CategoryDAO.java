@@ -88,7 +88,7 @@ public class CategoryDAO implements IBaseDAO<Category> {
 						li = new ArrayList();
 						Category category = new Category();
 						category.setCid(cid);
-						category.setCname("Cname");
+						category.setCname(rs.getString("cname"));
 						category.setSummary(rs.getString("Summary"));
 						li.add(category);
 					}
