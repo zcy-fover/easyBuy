@@ -26,6 +26,29 @@ public class GoodsDAO implements IBaseDAO<Goods>{
 		return DAOHelper.exeUpdate("delete from tbgoods where gname=?", t.getGname());
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public Goods findSingleById(final int cid) {
+		String sql = "select * from tbgoods where gid = ?";
+		List<Goods> list = DAOHelper.exeQuery(sql, new Object[] { cid }, new CallBack() {
+			@Override
+			public List getResult(ResultSet rs) {
+				List li = null;
+				try {
+					if (rs.next()) {
+						li = new ArrayList();
+						Goods goods = new Goods();
+						goods.setGname(rs.getString("gname"));
+						li.add(goods);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return li;
+			}
+		});
+		return list != null ? (Goods) list.get(0) : null;
+	}
+	
 	@SuppressWarnings("rawtypes")
 	public Goods findSingle(final Goods t) {
 		String sql = "select gid,cid,price,offset,storage,gtime from tbgoods where gname = ?";

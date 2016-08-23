@@ -23,7 +23,7 @@ public class DBUtils {
 	//数据库账号
 	public static final String USERNAME = "root";
 	//数据库密码
-	public static final String PASSWORD = "";
+	public static final String PASSWORD = "root";
 	private static Connection conn;
 	
 	static{

@@ -20,7 +20,18 @@ public class CategoryService {
 	
 	public List<Category> getCategory(){
 		List<Category> listCategory = categoryDAO.findAll();
+		for(Category category: listCategory){
+    		System.out.println("商品种类：" + category.getCname());
+    	}
 		return listCategory;
+	}
+	
+	public boolean addCategory(Category category){
+		return categoryDAO.save(category);
+	}
+	
+	public boolean deleteCategory(Category category){
+		return categoryDAO.del(category);
 	}
 	
 }

@@ -80,4 +80,28 @@ public class UserDAO implements IBaseDAO<User>{
 		return listUser != null ? listUser : null;
 	}
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public User findSingleById(final int cid) {
+		String sql = "select * from tbuser where userid = ?";
+		List<User> list = DAOHelper.exeQuery(sql, new Object[] { cid }, new CallBack() {
+			@Override
+			public List getResult(ResultSet rs) {
+				List li = null;
+				try {
+					if (rs.next()) {
+						li = new ArrayList();
+						User user = new User();
+						user.setUsername(rs.getString("username"));
+						user.setPassword(rs.getString("password"));
+						li.add(user);
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				return li;
+			}
+		});
+		return list != null ? (User) list.get(0) : null;
+	}
+	
 }

@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="com.group.easyBuy.dto.*" %>
+<%@ page import="java.util.*" %>
 <%
 	String admin = (String)request.getAttribute("admin");
+	@SuppressWarnings("unchecked")
+	List<Category> listCategory = (List<Category>)request.getAttribute("listCategory");
 %>
 
 <!DOCTYPE>
@@ -43,7 +46,7 @@
 						<span></span>系统管理
 					</h4>
 					<div class="list-item none">
-						<a href=''>查看管理员</a> 
+						<a href="">查看管理员</a> 
 					</div>
 				</li>
 				<li>
@@ -126,6 +129,16 @@
 				$("#main").addClass("hover").html("<iframe src='/easyBuy/ViewUserController' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
 			});
 			
+			$("#addCategory").click(function(){
+				$("#main").addClass("hidden");
+				$("#main").addClass("hover").html("<iframe src='view/addCategory.jsp' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
+			});
+			
+			$("#viewCategory").click(function(){
+				$("#main").addClass("hidden");
+				$("#main").addClass("hover").html("<iframe src='/easyBuy/ViewCategoryController' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
+			});
+			
 			$("#addGoods").click(function(){
 				$("#main").addClass("hidden");
 				$("#main").addClass("hover").html("<iframe src='view/addGoods.jsp' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
@@ -144,6 +157,11 @@
 			$("#editPass").click(function(){
 				$("#main").addClass("hidden");
 				$("#main").addClass("hover").html("<iframe src='view/editPass.jsp' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
+			});
+			
+			$("#viewOrders").click(function(){
+				$("#main").addClass("hidden");
+				$("#main").addClass("hover").html("<iframe src='/easyBuy/OrdersController' width='890px' height='500px' scrolling='no' frameborder='0' ></iframe>");
 			});
 		})
 	</script>

@@ -1,6 +1,8 @@
 package com.group.easyBuy.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.group.easyBuy.dao.impl.CategoryDAO;
 import com.group.easyBuy.dto.Admin;
+import com.group.easyBuy.dto.Category;
 import com.group.easyBuy.service.AdminService;
 import com.group.easyBuy.service.ServiceModel;
 
@@ -55,8 +59,13 @@ public class AdminController extends HttpServlet {
 		ServiceModel model = service.login(a);
 		System.out.println(model.getMessage() + "---" + model.getCode() + "---" + model.getData());
 		
+		List<Category> listCategory = new ArrayList<>();
+		CategoryDAO categoryDAO = new CategoryDAO();
+		listCategory = categoryDAO.findAll();
+		
 		if(model.getCode() == 1){
 			request.setAttribute("admin", username);
+			request.setAttribute("listCategory", listCategory);
 			request.getRequestDispatcher("/view/menu.jsp").forward(request, response);
 		} else{
 			request.getSession().invalidate();

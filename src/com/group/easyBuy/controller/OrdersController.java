@@ -45,7 +45,7 @@ public class OrdersController extends HttpServlet {
     	
     	listOrders = ordersService.viewOrders();
     	for(Orders orders: listOrders){
-    		System.out.println("订单输出：" + orders.getGoods() + "--" + orders.getTotalPrice());
+    		System.out.println("订单输出：" + orders.getGoods().getGname() + "--" + orders.getTotalPrice());
     	}
     	
     	request.setAttribute("listOrders", listOrders);
@@ -57,7 +57,17 @@ public class OrdersController extends HttpServlet {
     	request.setCharacterEncoding("utf-8");
     	response.setCharacterEncoding("utf-8");
     	
+	} 
+    
+    public void deleteOrders(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+    	request.setCharacterEncoding("utf-8");
+    	response.setCharacterEncoding("utf-8");
     	
+    	String orderno = request.getParameter("orderno");
+    	Orders orders = new Orders();
+    	orders.setOrderNo(orderno);
+    	ordersService.deleteOrders(orders);
     	
 	} 
     
@@ -65,7 +75,18 @@ public class OrdersController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
+		request.setCharacterEncoding("utf-8");
+    	response.setCharacterEncoding("utf-8");
+    	
+    	List<Orders> listOrders = new ArrayList<>();
+    	
+    	listOrders = ordersService.viewOrders();
+    	for(Orders orders: listOrders){
+    		System.out.println("订单输出：" + orders.getGoods() + "--" + orders.getTotalPrice());
+    	}
+    	
+    	request.setAttribute("listOrders", listOrders);
+    	request.getRequestDispatcher("/view/viewOrders.jsp").forward(request, response);
 	}
 
 	/**

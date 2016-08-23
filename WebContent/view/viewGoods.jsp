@@ -13,19 +13,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>商品种类</title>
 </head>
 <body>
 	
 	<table style="border:1; cellspacing=1; cellpadding=2; width=700; align=center">
     	<tr>
     		<td align="center" style="line-height:22px; ">&nbsp;</td>
-			<td align="center" style="line-height:22px; ">商品名称&nbsp;</td>
+			<td align="center" style="line-height:22px; ">商品种类&nbsp;</td>
 			<td align="center" style="line-height:22px; ">单价&nbsp;</td>
 			<td align="center" style="line-height:22px; ">折扣&nbsp;</td>
 			<td align="center" style="line-height:22px; ">库存&nbsp;</td>
-			<td align="center" style="line-height:22px; ">类型&nbsp;</td>
-			<td align="center" style="line-height:22px; ">操作&nbsp;</td>
+			<td align="center" style="line-height:22px; ">种类&nbsp;</td>
 		</tr>
 		
 		

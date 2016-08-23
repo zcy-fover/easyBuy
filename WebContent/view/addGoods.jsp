@@ -1,5 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="com.group.easyBuy.dto.*" %>
+<%@ page import="java.util.*" %>
+<%
+	@SuppressWarnings("unchecked")
+	List<Category> listCategory = (List<Category>)request.getAttribute("listCategory");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,9 +115,17 @@
 			<div  class="input-group">
 				<span class="input-group-addon">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</span>
 				<div class="form-group">
-      				<select class="form-control" style=" width: 50%" name="cname">
-         				<option value="food" id="food">食物</option>
-         				<option value="cloth" id="cloth">衣服</option>
+					<select class="form-control" style=" width: 50%" name="cname">
+      				<%
+      					if(listCategory != null){
+      						for(int i = 0; i < listCategory.size(); i++){
+      							Category category = listCategory.get(i);
+      				%>
+						<option value="" id="category<%=i%>"><%=category.getCname() %></option>      				
+      				<%
+      						}
+      					}
+      				%>
       				</select>
    				</div>
 			</div>

@@ -10,7 +10,6 @@ import java.util.List;
 import com.group.easyBuy.utils.DBUtils;
 
 public class DAOHelper {
-
 	/**
 	 * 通过该方法实现对于数据表的所有增，删，改操作
 	 * 
@@ -57,6 +56,12 @@ public class DAOHelper {
 		return null;
 	}
 
+	/**
+	 * 无条件查询
+	 * @param sql
+	 * @param call
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	public static List exeQueryAll(String sql, CallBack call) {
 		Connection conn = DBUtils.getConn();

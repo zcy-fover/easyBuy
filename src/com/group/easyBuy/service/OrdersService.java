@@ -35,4 +35,8 @@ public class OrdersService {
 		return listOrders;
 	}
 	
+	public boolean deleteOrders(Orders orders){
+		return ordersDAO.del(orders);
+	}
+	
 }
